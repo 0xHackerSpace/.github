@@ -1,5 +1,6 @@
 # 0xHackerSpace
 
 
+**_0xHackerSpace_** é um espaço colaborativo para entusiastas de tecnologia, makers, desenvolvedores e mentes curiosas.
+Uma organização orientada pela comunidade que promove criatividade,aprendizado e inovação através do conhecimento compartilhado e da experimentação prática.
 
-0xHackerSpace is a collaborative space for tech enthusiasts, makers, developers, and curious minds. We are a community-driven organization that fosters creativity, learning, and innovation through shared knowledge and hands-on experimentation. Whether you're a seasoned hacker or just starting out, there's a place for you here!
