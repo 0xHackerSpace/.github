@@ -9,12 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       issues: write
-      contents: read
+      contents: write
     env:
       TF_VAR_GH_APP_ID: ${{ vars.GH_APP_ID }}
       TF_VAR_GH_APP_PRIVATE_KEY: ${{ secrets.GH_APP_PRIVATE_KEY }}
       TF_VAR_GH_APP_PRIVATE_KEY_PATH: ${{ secrets.GH_APP_PRIVATE_KEY }}
-      TF_VAR_GH_APP_INSTALLATION_ORGANIZATION_ID:  ${{ vars.GH_APP_ID }}
+      TF_VAR_GH_APP_INSTALLATION_ORGANIZATION_ID:  ${{ vars.GH_APP_INSTALLATION_ORGANIZATION_ID }}
       TF_VAR_GITHUB_ORGANIZATION: "0xHackerSpace"
 
     steps:
