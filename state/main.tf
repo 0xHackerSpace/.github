@@ -18,7 +18,8 @@ provider "github" {
   app_auth {
     id              = var.GH_APP_ID
     installation_id = var.GH_APP_INSTALLATION_ORGANIZATION_ID
-    pem_file        = file(var.GH_APP_PRIVATE_KEY_PATH)
+    pem_file        = var.GH_APP_PRIVATE_KEY
+    # pem_file        = file(var.GH_APP_PRIVATE_KEY_PATH) # this is for local file
   }
 }
 
