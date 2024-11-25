@@ -10,6 +10,12 @@ jobs:
     permissions:
       issues: write
       contents: read
+    env:
+      TF_VAR_GH_APP_ID: ${{ vars.GH_APP_ID }}
+      TF_VAR_GH_APP_PRIVATE_KEY: ${{ secrets.GH_APP_PRIVATE_KEY }}
+      TF_VAR_GH_APP_PRIVATE_KEY_PATH: ${{ secrets.GH_APP_PRIVATE_KEY }}
+      TF_VAR_GH_APP_INSTALLATION_ORGANIZATION_ID:  ${{ vars.GH_APP_ID }}
+      TF_VAR_GITHUB_ORGANIZATION: "0xHackerSpace"
 
     steps:
       - name: Checkout repository
@@ -20,8 +26,13 @@ jobs:
           echo "Issue ${{ github.event.action }} by ${{ github.actor }}"
           echo "Issue title: ${{ github.event.issue.title }}"
           echo "Issue number: ${{ github.event.issue.number }}"
+          echo "Issue body: ${{ github.event.issue.body }}"
+
       - name: terraform-config
         uses: ./.github/actions/tf-config
         with:
           terraform_version: "1.5.0"
-          working_directory: "."
+          working_directory: "./state"
+      - name: terraform plan
+        working-directory: "./state"
+        run: terraform plan
