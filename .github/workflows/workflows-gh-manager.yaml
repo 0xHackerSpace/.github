@@ -1,0 +1,22 @@
+name: Workflow issue manager
+
+on:
+  issues:
+    types: [opened, edited, closed, reopened, assigned, unassigned]
+
+jobs:
+  issue_handler:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log issue event
+        run: |
+          echo "Issue ${{ github.event.action }} by ${{ github.actor }}"
+          echo "Issue title: ${{ github.event.issue.title }}"
+          echo "Issue number: ${{ github.event.issue.number }}"
