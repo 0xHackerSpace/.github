@@ -20,3 +20,8 @@ jobs:
           echo "Issue ${{ github.event.action }} by ${{ github.actor }}"
           echo "Issue title: ${{ github.event.issue.title }}"
           echo "Issue number: ${{ github.event.issue.number }}"
+      - name: terraform-config
+        uses: ./.github/actions/tf-config
+        with:
+          terraform_version: "1.5.0"
+          working_directory: "."

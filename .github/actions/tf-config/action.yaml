@@ -1,0 +1,34 @@
+name: "Terraform Configuration Setup"
+description: "A composite action to setup and validate Terraform configurations"
+
+inputs:
+  terraform_version:
+    description: "Version of Terraform to install"
+    required: false
+    default: "1.5.0"
+  working_directory:
+    description: "Directory containing Terraform configurations"
+    required: false
+    default: "."
+
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: ${{ inputs.terraform_version }}
+
+    - name: Verify Terraform installation
+      shell: bash
+      run: terraform --version
+
+    - name: Initialize Terraform
+      shell: bash
+      working-directory: ${{ inputs.working_directory }}
+      run: terraform init
+
+    - name: Validate Terraform Configuration
+      shell: bash
+      working-directory: ${{ inputs.working_directory }}
+      run: terraform validate
