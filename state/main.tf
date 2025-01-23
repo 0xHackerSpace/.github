@@ -7,10 +7,15 @@ terraform {
 
   }
   required_version = ">= 1.0"
+  cloud { 
+    
+    organization = "0xHackerSpace" 
 
-  backend "local" {
-    path = "terraform.tfstate"
-  }
+    workspaces { 
+      name = "github" 
+    } 
+  } 
+
 }
 
 provider "github" {
