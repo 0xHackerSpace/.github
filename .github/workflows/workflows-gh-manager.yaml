@@ -18,6 +18,7 @@ jobs:
       TF_VAR_GH_APP_PRIVATE_KEY_PATH: ${{ secrets.GH_APP_PRIVATE_KEY }}
       TF_VAR_GH_APP_INSTALLATION_ORGANIZATION_ID:  ${{ vars.GH_APP_INSTALLATION_ORGANIZATION_ID }}
       TF_VAR_GITHUB_ORGANIZATION: "0xHackerSpace"
+      TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN_app_terraform_io }}
 
     steps:
       - name: Checkout repository
