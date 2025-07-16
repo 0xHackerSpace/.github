@@ -1,8 +1,10 @@
 name: Workflow issue manager
 
 on:
-  issues:
-    types: [opened, edited, closed, reopened, assigned, unassigned]
+  push:
+    branches:
+      - main
+
   issue_comment:
     types: [created, edited, deleted]
 
@@ -24,13 +26,39 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Log issue event
-        run: |
-          echo "Issue ${{ github.event.action }} by ${{ github.actor }}"
-          echo "Issue title: ${{ github.event.issue.title }}"
-          echo "Issue number: ${{ github.event.issue.number }}"
-          echo "Issue body: ${{ github.event.issue.body }}"
+      # # Log issue event (only for issue/issue_comment events)
+      # - name: Log issue event
+      #   if: github.event_name == 'issues' || github.event_name == 'issue_comment'
+      #   run: |
+      #     echo "Issue ${{ github.event.action }} by ${{ github.actor }}"
+      #     echo "Issue title: ${{ github.event.issue.title }}"
+      #     echo "Issue number: ${{ github.event.issue.number }}"
+      #     echo "Issue body: ${{ github.event.issue.body }}"
 
+      # Install Terraform
+      - name: Setup Terraform
+        if: github.event_name == 'push'
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: "1.5.0"
+
+      # Terraform login
+      - name: Terraform login
+        if: github.event_name == 'push'
+        run: terraform login
+        working-directory: ./state
+
+      # Terraform init
+      - name: Terraform init
+        if: github.event_name == 'push'
+        run: terraform init
+        working-directory: ./state
+
+      # Terraform plan
+      - name: Terraform plan
+        if: github.event_name == 'push'
+        run: terraform plan
+        working-directory: ./state
       - name: terraform-config
         uses: ./.github/actions/tf-config
         with:
