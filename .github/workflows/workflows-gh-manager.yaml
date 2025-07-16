@@ -43,9 +43,9 @@ jobs:
           terraform_version: "1.5.0"
 
       # Terraform login
-      - name: Terraform login
+      - name: Terraform login (HCP via token)
         if: github.event_name == 'push'
-        run: terraform login
+        run: terraform login --token=${{ secrets.TF_TOKEN_app_terraform_io }}
         working-directory: ./state
 
       # Terraform init
