@@ -4,7 +4,6 @@ locals {
 }
 
 
-
 resource "github_repository" "wrapper" {
   name        = local.repository_name
   description = local.description
@@ -25,8 +24,8 @@ resource "github_repository" "wrapper" {
   topics = ["infrastructure", "terraform", "wrapper"]
 }
 
-resource "github_actions_organization_variable" "sub_domain" {
-  variable_name     = "SUB_DOMAIN"
-  visibility      = "private"
-  value = "${local.repository_name}.${var.MAIN_DOMAIN}"
-}
+# resource "github_actions_organization_variable" "sub_domain" {
+#   variable_name     = "SUB_DOMAIN"
+#   visibility      = "private"
+#   value = "${local.repository_name}.${var.MAIN_DOMAIN}"
+# }
