@@ -45,12 +45,12 @@ jobs:
           cli_config_credentials_token: ${{ secrets.TF_TOKEN_app_terraform_io }};
 
       # Terraform login
-      - name: Terraform login (HCP via token)
-        if: github.event_name == 'push'
-        env:
-          TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN_app_terraform_io }}
-        run: terraform login 
-        working-directory: ./state
+      # - name: Terraform login (HCP via token)
+      #   if: github.event_name == 'push'
+      #   env:
+      #     TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN_app_terraform_io }}
+      #   run: terraform login 
+      #   working-directory: ./state
 
       # Terraform init
       - name: Terraform init
