@@ -4,7 +4,7 @@ resource "github_repository" "wrapper" {
   visibility  = "public"
 
   has_issues    = true
-  has_wiki      = false
+  has_wiki      = true
   has_projects  = false
   has_downloads = false
 
