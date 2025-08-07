@@ -4,7 +4,7 @@ locals {
 }
 
 
-resource "github_repository" "ingredient " {
+resource "github_repository" "ingredient" {
   name        = local.repository_name_ingredient
   description = local.description_ingredient 
   visibility  = "private"
