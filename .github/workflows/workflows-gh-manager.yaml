@@ -63,11 +63,8 @@ jobs:
         if: github.event_name == 'push'
         run: terraform plan
         working-directory: ./state
-      - name: terraform-config
-        uses: ./.github/actions/tf-config
-        with:
-          terraform_version: "1.5.0"
-          working_directory: "./state"
-      - name: terraform plan
-        working-directory: "./state"
-        run: terraform plan
+      # Terraform apply
+      - name: Terraform apply
+        if: github.event_name == 'push'
+        run: terraform apply -auto-approve
+        working-directory: ./state
