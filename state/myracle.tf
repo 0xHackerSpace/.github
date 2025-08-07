@@ -1,12 +1,12 @@
 locals {
-    repository_name = "myracle"
-    description     = "repository for myracle project, a centralized repo for ai (models,prompts, rags,mcps, etc.)"
+    repository_name_myracle = "myracle"
+    description_myracle   = "repository for myracle project, a centralized repo for ai (models,prompts, rags,mcps, etc.)"
 }
 
 
 resource "github_repository" "myracle" {
-  name        = local.repository_name
-  description = local.description
+  name        = local.repository_name_myracle
+  description = local.description_myracle
   visibility  = "private"
 
   has_issues    = true
