@@ -23,6 +23,7 @@ jobs:
       TF_VAR_GITHUB_ORGANIZATION: "0xHackerSpace"
       TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN_app_terraform_io }}
       TF_VAR_TF_TOKEN_APP_TERRAFORM_IO: ${{ secrets.TF_TOKEN_app_terraform_io }}
+      TF_VAR_MAIN_DOMAIN: ${{ vars.MAIN_DOMAIN }}
 
     steps:
       - name: Checkout repository

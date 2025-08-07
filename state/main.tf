@@ -53,3 +53,8 @@ resource "github_actions_secret" "tf_token_app_terraform_io" {
   secret_name     = "TF_TOKEN_APP_TERRAFORM_IO"
   plaintext_value = var.TF_TOKEN_APP_TERRAFORM_IO
 }
+resource "github_actions_organization_variable" "main_domain" {
+  variable_name     = "MAIN_DOMAIN"
+  visibility      = "private"
+  value = var.MAIN_DOMAIN
+}
