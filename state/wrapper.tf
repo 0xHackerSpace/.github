@@ -1,6 +1,13 @@
+locals {
+    repository_name = "wrapper"
+    description     = "Wrapper repository for managing infrastructure"
+}
+
+
+
 resource "github_repository" "wrapper" {
-  name        = "wrapper"
-  description = "Wrapper repository for managing infrastructure"
+  name        = local.repository_name
+  description = local.description
   visibility  = "public"
 
   has_issues    = true
@@ -16,4 +23,10 @@ resource "github_repository" "wrapper" {
   delete_branch_on_merge = true
   
   topics = ["infrastructure", "terraform", "wrapper"]
+}
+
+resource "github_actions_organization_variable" "sub_domain" {
+  variable_name     = "SUB_DOMAIN"
+  visibility      = "private"
+  value = "${local.repository_name}.${var.MAIN_DOMAIN}"
 }
