@@ -24,3 +24,7 @@ variable "GITHUB_ORGANIZATION" {
   description = "GitHub organization name"
   type        = string
 }
+variable "TF_TOKEN_APP_TERRAFORM_IO" {
+  description = "HCP Terraform token for app.terraform.io"
+  type        = string
+}

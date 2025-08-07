@@ -48,3 +48,8 @@ resource "github_actions_secret" "github_secret_gh_app_private_key" {
   secret_name     = "GH_APP_PRIVATE_KEY"
   plaintext_value = var.GH_APP_PRIVATE_KEY
 }
+resource "github_actions_secret" "tf_token_app_terraform_io" {
+  repository      = data.github_repository.github.name
+  secret_name     = "TF_TOKEN_APP_TERRAFORM_IO"
+  plaintext_value = var.TF_TOKEN_APP_TERRAFORM_IO
+}
