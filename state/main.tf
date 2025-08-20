@@ -34,21 +34,25 @@ data "github_repository" "github" {
 
 
 resource "github_actions_variable" "github_variable_gh_app_id" {
+  depends_on = [ data.github_repository.github ]
   repository      = data.github_repository.github.name
   variable_name     = "GH_APP_ID"
   value = var.GH_APP_ID
 }
 resource "github_actions_variable" "github_variable_gh_app_installation" {
+   depends_on = [ data.github_repository.github ]
   repository      = data.github_repository.github.name
   variable_name     = "GH_APP_INSTALLATION_ORGANIZATION_ID"
   value = var.GH_APP_INSTALLATION_ORGANIZATION_ID
 }
 resource "github_actions_secret" "github_secret_gh_app_private_key" {
+   depends_on = [ data.github_repository.github ]
   repository      = data.github_repository.github.name
   secret_name     = "GH_APP_PRIVATE_KEY"
   plaintext_value = var.GH_APP_PRIVATE_KEY
 }
 resource "github_actions_secret" "tf_token_app_terraform_io" {
+   depends_on = [ data.github_repository.github ]
   repository      = data.github_repository.github.name
   secret_name     = "TF_TOKEN_APP_TERRAFORM_IO"
   plaintext_value = var.TF_TOKEN_APP_TERRAFORM_IO

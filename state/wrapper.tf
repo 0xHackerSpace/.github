@@ -1,6 +1,6 @@
 locals {
-    repository_name = "wrapper"
-    description     = "Wrapper repository for managing infrastructure"
+  repository_name = "wrapper"
+  description     = "Wrapper repository for managing infrastructure"
 }
 
 
@@ -17,10 +17,10 @@ resource "github_repository" "wrapper" {
   allow_merge_commit = true
   allow_squash_merge = true
   allow_rebase_merge = true
-  auto_init         = true
+  auto_init          = true
 
   delete_branch_on_merge = true
-  
+
   topics = ["infrastructure", "terraform", "wrapper"]
 }
 

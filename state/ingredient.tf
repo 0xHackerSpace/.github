@@ -1,14 +1,8 @@
-locals {
-    repository_name_ingredient = "ingredient"
-    description_ingredient      = "repository for ingredient project"
-}
-
-
 resource "github_repository" "ingredient" {
-  name        = local.repository_name_ingredient
-  description = local.description_ingredient 
+  name        = "ingredient"
+  description = "repository for ingredient project"
   visibility  = "private"
-  is_template = true 
+  is_template = true
 
   has_issues    = true
   has_wiki      = true
@@ -18,10 +12,10 @@ resource "github_repository" "ingredient" {
   allow_merge_commit = true
   allow_squash_merge = true
   allow_rebase_merge = true
-  auto_init         = true
+  auto_init          = true
 
   delete_branch_on_merge = true
-  
+
   topics = ["infrastructure", "terraform", "wrapper"]
 }
 
