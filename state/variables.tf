@@ -32,3 +32,18 @@ variable "MAIN_DOMAIN" {
   description = "Main domain for the organization"
   type        = string
 }
+
+
+variable "GH_TOKEN_AI_MODELS" {
+  description = "GitHub token for AI models"
+  type        = string
+}
+
+variable "GH_URL_AI_MODELS" {
+  description = "GitHub URL for AI models"
+  type        = string
+}
+variable "GH_AI_MODEL" {
+  description = "GitHub AI model to use"
+  type        = string
+}

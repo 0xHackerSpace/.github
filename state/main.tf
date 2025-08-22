@@ -62,3 +62,25 @@ resource "github_actions_organization_variable" "main_domain" {
   visibility      = "private"
   value = var.MAIN_DOMAIN
 }
+
+
+
+### AI MODELS
+resource "github_actions_secret" "gh_token_ai_models" {
+  depends_on = [ data.github_repository.github ]
+  repository      = data.github_repository.github.name
+  secret_name     = "GH_TOKEN_AI_MODELS"
+  plaintext_value = var.GH_TOKEN_AI_MODELS
+}
+resource "github_actions_variable" "gh_url_ai_models" {
+  depends_on = [ data.github_repository.github ]      
+  repository      = data.github_repository.github.name
+  variable_name = "GH_URL_AI_MODELS"
+  value =  var.GH_URL_AI_MODELS
+}
+resource "github_actions_variable" "gh_ai_model" {
+  depends_on = [ data.github_repository.github ]
+  repository      = data.github_repository.github.name
+  variable_name     = "GH_AI_MODEL"
+  value = var.GH_AI_MODEL
+}
