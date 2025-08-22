@@ -78,8 +78,40 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Run bash script
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
         run: |
-          echo "Running bash script..."
-          # Add your bash commands here
-          echo "Bash script completed."
+          python -m pip install --upgrade pip
+          pip install azure-ai-inference
+      - name: Run bash script
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN_AI_MODELS }}
+        shell: python
+        run: |
+          import os
+          from azure.ai.inference import ChatCompletionsClient
+          from azure.ai.inference.models import SystemMessage, UserMessage
+          from azure.core.credentials import AzureKeyCredential
+
+          endpoint = "https://models.github.ai/inference"
+          model = "openai/gpt-5"
+          token = os.environ["GITHUB_TOKEN"]
+
+          client = ChatCompletionsClient(
+              endpoint=endpoint,
+              credential=AzureKeyCredential(token),
+          )
+
+          response = client.complete(
+              messages=[
+                  SystemMessage("You are a helpful assistant."),
+                  UserMessage("What is the capital of France?"),
+              ],
+              model=model
+          )
+
+          print(response.choices[0].message.content)
+
