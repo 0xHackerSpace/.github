@@ -20,7 +20,7 @@ jobs:
       TF_VAR_GH_APP_ID: ${{ vars.GH_APP_ID }}
       TF_VAR_GH_APP_PRIVATE_KEY: ${{ secrets.GH_APP_PRIVATE_KEY }}
       TF_VAR_GH_APP_PRIVATE_KEY_PATH: ${{ secrets.GH_APP_PRIVATE_KEY }}
-      TF_VAR_GH_APP_INSTALLATION_ORGANIZATION_ID:  ${{ vars.GH_APP_INSTALLATION_ORGANIZATION_ID }}
+      TF_VAR_GH_APP_INSTALLATION_ORGANIZATION_ID: ${{ vars.GH_APP_INSTALLATION_ORGANIZATION_ID }}
       TF_VAR_GITHUB_ORGANIZATION: "0xHackerSpace"
       TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN_app_terraform_io }}
       TF_VAR_TF_TOKEN_APP_TERRAFORM_IO: ${{ secrets.TF_TOKEN_app_terraform_io }}
@@ -52,7 +52,7 @@ jobs:
       #   if: github.event_name == 'push'
       #   env:
       #     TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN_app_terraform_io }}
-      #   run: terraform login 
+      #   run: terraform login
       #   working-directory: ./state
 
       # Terraform init
@@ -71,3 +71,15 @@ jobs:
         if: github.event_name == 'push'
         run: terraform apply -auto-approve
         working-directory: ./state
+
+
+  bash:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Run bash script
+        run: |
+          echo "Running bash script..."
+          # Add your bash commands here
+          echo "Bash script completed."
