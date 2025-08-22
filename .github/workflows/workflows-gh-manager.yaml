@@ -98,7 +98,7 @@ jobs:
 
           endpoint = "https://models.github.ai/inference"
           model = "openai/gpt-5"
-          token = os.environ['GITHUB_TOKEN']
+          token = os.environ['GH_TOKEN']
 
           client = ChatCompletionsClient(
               endpoint=endpoint,
