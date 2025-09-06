@@ -1,0 +1,44 @@
+name: Generate Release
+
+on:
+  push:
+    tags:
+      - 'v*' # Trigger on version tags
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Required for creating releases
+      packages: write # Required if you're also publishing to GitHub Packages
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Required for generating changelog
+
+      - name: Get version from tag
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+      - name: Generate changelog
+        id: changelog
+        uses: github-changelog-generator/github-changelog-generator@v1.16.4
+        with:
+          userRepository: ${{ github.repository }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          unreleased: false
+          sinceTag: ${{ steps.get_version.outputs.VERSION }}
+          stripGeneratorNotice: true
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: Release ${{ steps.get_version.outputs.VERSION }}
+          body_path: CHANGELOG.md
+          draft: false
+          prerelease: false
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: |
+            ./
