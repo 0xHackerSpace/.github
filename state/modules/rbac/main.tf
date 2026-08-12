@@ -1,9 +1,8 @@
 
-resource "github_repository" "this" {
+resource "github_repository" "myracle" {
   name        = var.name
   description = var.description
   visibility  = var.visibility
-  is_template = var.is_template
 
   has_issues    = var.has_issues
   has_wiki      = var.has_wiki
@@ -18,13 +17,4 @@ resource "github_repository" "this" {
   delete_branch_on_merge = var.delete_branch_on_merge
   
   topics = var.topics
-
-  dynamic "template" {
-    for_each = var.template == null ? [] : [var.template]
-    content {
-      owner      = template.value.owner
-      repository = template.value.repository
-    }
-  }
-
 }

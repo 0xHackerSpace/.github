@@ -75,19 +75,3 @@ variable "description" {
   type        = string
   default     = "repository for myracle project, a centralized repo for ai (models,prompts, rags,mcps, etc.)"
 }
-
-variable "is_template" {
-  description = "Set to true to make the repository a template repository"
-  type        = bool
-  default     = false
-}
-
-
-variable "template" {
-  description = "Template repository to create the repository from"
-  type = object({
-    owner      = string
-    repository = string
-  })
-  default = null
-}
