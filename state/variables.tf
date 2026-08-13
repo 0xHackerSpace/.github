@@ -9,6 +9,10 @@ variable "GH_APP_PRIVATE_KEY" {
   description = "GitHub App ID"
   type        = string
 }
+variable "GH_APP_PRIVATE_KEY_NO_NEW_LINES" {
+  description = "GitHub App ID"
+  type        = string
+}
 
 variable "GH_APP_PRIVATE_KEY_PATH" {
   description = "GitHub App ID"

@@ -96,7 +96,6 @@ locals {
 			delete_branch_on_merge = true
   			topics = ["infrastructure", "terraform", "wrapper"]
 		}
-		# TODO: precisa ser revisado
 		"repo_mcpHCPTerraform" = {
 			name        = "mcpHCPTerraform"
 			description = "repository for mcp HCP terraform"
@@ -268,5 +267,59 @@ locals {
 		}
 	}
 
+	projects = {
+		"config" = {
+			name        = "config"
+			variable_set ={
+				github_app={
+					name = "github_app"
+					description = "github app configuration"
+					variables = {
+						GITHUB_ORGANIZATION = {
+							key = "GITHUB_ORGANIZATION"
+							value = var.GITHUB_ORGANIZATION
+							description = "github organization name"
+							category = "env"
+						}
+						GH_APP_ID = {
+							key = "GH_APP_ID"
+							value = var.GH_APP_ID
+							description = "github app id"
+							category = "env"
+						}
+						GH_APP_INSTALLATION_ORGANIZATION_ID = {
+							key = "GH_APP_INSTALLATION_ORGANIZATION_ID"
+							value = var.GH_APP_INSTALLATION_ORGANIZATION_ID
+							description = "github app installation organization id"
+							category = "env"
+						}
+						GH_APP_PRIVATE_KEY = {
+							key = "GH_APP_PRIVATE_KEY"
+							value_wo = var.GH_APP_PRIVATE_KEY_NO_NEW_LINES
+							value_wo_version = 1
+							description = "github app private key"
+							category = "env"
+							sensitive = true
+						}
+
+					}
+				}
+				tfe={
+					name = "tfe"
+					description = "tfe configuration"
+					variables = {
+						tfe_token = {
+							key = "TFE_TOKEN"
+							value_wo = var.TF_TOKEN_APP_TERRAFORM_IO
+							value_wo_version = 1
+							sensitive = true
+							description = "tfe token for terraform cloud"
+							category = "env"
+						}
+					}
+				}
+			}
+		}
+	}
 
 }
